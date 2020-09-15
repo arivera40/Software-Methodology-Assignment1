@@ -1,11 +1,23 @@
-package shoppingProject;
+package projectone;
+/*
+public class GroceryItem {
+	private String name;
+	 private double price;
+	 private boolean taxable;
+	 
+	 public GroceryItem(String name, double price, boolean taxable) {
+		 this.name = name;
+		 this.price = price;
+		 this.taxable = taxable;
+	 }
+	 public boolean equals(Object obj){ 
+		 
+	 }
+	 public String toString() { return ""; }
 
-/**
- * This is the class for GroceryItem
- * 
- * @author andy, joseph
- *
- */
+}
+*/
+
 public class GroceryItem {
 	/**
 	 * item name
@@ -34,8 +46,15 @@ public class GroceryItem {
 		this.taxable = taxable;
 	}
 	
-	public boolean equals(Object obj) { //**
-		if(this.equals(obj)){
+	public boolean equals(Object obj) { //**	
+		GroceryItem itm = new GroceryItem("", 0.00,false);
+		if (!(obj instanceof GroceryItem)) {
+			return false;
+		}
+		else {
+		 itm = (GroceryItem) obj;
+		}
+		if (itm.name.equals(this.name) && itm.price == this.price && itm.taxable == this.taxable) {
 			return true;
 		}
 		return false;
@@ -54,6 +73,7 @@ public class GroceryItem {
 	}
 
 	public double getItemTax() {
+
 		return Math.round((this.price * 0.0625) * 100.0) / 100.0;
 	}
 	

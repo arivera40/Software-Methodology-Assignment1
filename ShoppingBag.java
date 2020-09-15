@@ -1,5 +1,4 @@
-package shoppingProject;
-
+package projectone;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +31,9 @@ public class ShoppingBag {
 	
 	public void add(GroceryItem item) {
 		bag[size] = item;
+		String output = item.getName();
+		System.out.println( output + " has been added to the cart");
 		size++;
-		
 		if(size == capacity) {	//this can go before or after adding item to list
 			grow();
 		}
@@ -41,12 +41,17 @@ public class ShoppingBag {
 	
 	public boolean remove(GroceryItem item) {
 		int itemIndex = find(item);
+//		System.out.println(itemIndex);
 		if(itemIndex == -1) {
+			System.out.println("Unable to Remove, this item is not in the bag.");
 			return false;
 		}
+		String output = bag[itemIndex].getName();
 		bag[itemIndex] = bag[size - 1];
 		bag[size - 1] = null;
+		System.out.println( output + " has been removed from the cart");
 		size--;
+//		System.out.println(size);
 		return true;
 	}
 	
@@ -55,6 +60,7 @@ public class ShoppingBag {
 		for(int i=0; i < size; i++) {
 			totalPrice += bag[i].getPrice();
 		}
+		totalPrice = Math.round(totalPrice * 100.0) / 100.0;
 		return totalPrice;
 	}
 	
@@ -75,5 +81,10 @@ public class ShoppingBag {
 		}
 		System.out.println("**End of list");
 	}
-	
+	public void checkout() {
+		System.out.println("**Checking out " + size + " items.");
+		for(int i=0; i < size; i++) {
+			System.out.println(bag[i].toString());
+		}
+	}
 }
