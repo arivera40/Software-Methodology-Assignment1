@@ -33,30 +33,33 @@ public class GroceryItem {
 		this.price = price;
 		this.taxable = taxable;
 	}
-	
-	public boolean equals(Object obj) { //**
-		if(this.equals(obj)){
-			return true;
+
+	public boolean equals(Object obj) {
+		if (obj instanceof GroceryItem) {
+			GroceryItem item = (GroceryItem) obj;
+			if (item.name.equals(this.name) && item.price == this.price && item.taxable == this.taxable) {
+				return true;
+			}
 		}
 		return false;
 	}
-	
+
 	public String toString() {
 		return this.getName() + ": " + this.getPrice() + " : " + ((this.isTaxable()) ? "is taxable" : "tax free");
 	}
-	
+
 	public double getPrice() {
 		return this.price;
 	}
-	
+
 	public boolean isTaxable() {
 		return this.taxable;
 	}
 
 	public double getItemTax() {
-		return Math.round((this.price * 0.0625) * 100.0) / 100.0;
+		return this.price * 0.06625;
 	}
-	
+
 	public String getName() {
 		return this.name;
 	}
